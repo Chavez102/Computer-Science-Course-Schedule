@@ -1,4 +1,4 @@
-package com.example.coursescheduleapp;
+package com.example.computersciencescheduleapp;
 
 import org.junit.Test;
 

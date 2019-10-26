@@ -1,6 +1,37 @@
 <resources>
-    <string name="app_name">Course Schedule App</string>
-    <string name="myString"> This is my String</string>
-    <string name="myString2"> Second String</string>
-    <string name="Title"> This Title</string>
+    <string name="app_name">Computer Science Schedule App</string>
+
+    <string name="Course_string">Course</string>
+    <string name="Credit_string">Credit</string>
+    <string name="Total_credits">Total Credits</string>
+    <string name="myString">hello</string>
+
+    <string name="your_string"><u>Underlined text</u></string>
+
+
+
+<!--Home Screen Strings-->
+    <string name="title_home">Home</string>
+    <string name="Current_Semester"><u>Current Semester</u></string>
+
+
+
+<!--Whats Next Screen Strings-->
+    <string name="WhatsnextlogoString">What\'s Next</string>
+
+<!--Degree Template Screen Strings-->
+    <string name="DegreeTemplatelogo">Degree Template</string>
+
+<!--Degree Strings-->
+
+    <string name="Degreelogo">Degree</string>
+
+
+
+
+
+
+
+
+
 </resources>

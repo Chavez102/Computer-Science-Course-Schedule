@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.computersciencescheduleapp.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+
+
+
+    <fragment
+        android:id="@+id/navigation_whatsnext"
+        android:name="com.example.computersciencescheduleapp.ui.WhatsNext.WhatsNextFragment"
+        android:label="Whats Next"
+        tools:layout="@layout/fragment_whatsnext"
+        />
+
+    <fragment
+        android:id="@+id/navigation_degreeTemplate"
+        android:name="com.example.computersciencescheduleapp.ui.DegreeTemplate.DegreeTemplateFragment"
+        android:label="@string/DegreeTemplatelogo"
+        tools:layout="@layout/fragment_degreetemplate"
+        />
+
+
+
+
+
+
+    <fragment
+        android:id="@+id/navigation_degree"
+        android:name="com.example.computersciencescheduleapp.ui.Degree.DegreeFragment"
+        android:label="@string/Degreelogo"
+        tools:layout="@layout/fragment_degree" />
+
+
+
+
+
+
+
+</navigation>
