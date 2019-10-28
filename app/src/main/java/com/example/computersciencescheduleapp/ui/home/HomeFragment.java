@@ -1,11 +1,18 @@
 package com.example.computersciencescheduleapp.ui.home;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,112 +23,154 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.computersciencescheduleapp.R;
+import com.example.computersciencescheduleapp.ui.DataManagement.Course;
 
 import java.util.ArrayList;
+
+import static com.example.computersciencescheduleapp.MainActivity.Main_CoursesTaken;
+import static com.example.computersciencescheduleapp.MainActivity.Main_allcourses;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     public ListView ListView;
+    private ContextMenu context = null;
+    public static Dialog myDialog;
+
+    public final String myTag="INside home Fragment";
+
+    public static ArrayList<Course> CoursesTaken=new ArrayList<>();
+    public static CourseListAdapter courseadapter;
+
+    public static ListView mylistview;
+    public static View root;
+    public static View Mfooterview;
+    public static int totalcredits=0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         homeViewModel =  ViewModelProviders.of(this).get(HomeViewModel.class);
 
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+         root = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+
+        mylistview=(ListView)root.findViewById(R.id.homelistview);
+        courseadapter=new CourseListAdapter(root.getContext(),R.layout.adapter_home,CoursesTaken);
+
+
+        mylistview.setAdapter(courseadapter);
+
+
+        Mfooterview = ((LayoutInflater)root.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                .inflate(R.layout.footer_homefragment, null);
+
+
+
+        mylistview.addFooterView(Mfooterview);
+        TextView totalcredits_tx=(TextView)root.findViewById(R.id.int_TotalCredits_Textview);
+
+        totalcredits_tx.setText(String.valueOf(totalcredits));
 
 
 
 
-        ListView=(ListView)root.findViewById(R.id.homelistview);
-
-        ArrayList<String> array=new ArrayList<>();
-
-        array.add("name1                                   Credit");
-        array.add("name2                         credit");
-        array.add("name3                          credit");
-        array.add("name4                          credit");
-        array.add("name5                      credit ");
-        array.add("name1");
-        array.add("name2");
-        array.add("name3");
-        array.add("name4");
-        array.add("name5");
-        array.add("name1");
-        array.add("name2");
-        array.add("name3");
-        array.add("name4");
-        array.add("name5");
-        array.add("name1");
-        array.add("name2");
-        array.add("name3");
-        array.add("name4");
-        array.add("name5");
-        array.add("name1");
-        array.add("name2");
-        array.add("name3");
-        array.add("name4");
-        array.add("name5"); array.add("name1");
-        array.add("name2");
-        array.add("name3");
-        array.add("name4");
-        array.add("name5");
-
-
-
-        ArrayAdapter adapter=new ArrayAdapter(root.getContext(),android.R.layout.simple_list_item_1,array);
-
-        ListView.setAdapter(adapter);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- //       TextView Current_Semester_textview=root.findViewById(R.id.current_semester_TextView);
-//        Current_Semester_textview.setPaintFlags(Current_Semester_textview.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-//        Current_Semester_textview.setText("This text will be underlined");
-
-//
-//        final TextView textView = root.findViewById(R.id.text_home);
-//
-//
-//
-//
-//        TextView mytextview=root.findViewById(R.id.mytextView);
-//        mytextview.setText("hola amigo");
-//
-//
-//
-//
-//
-//
-//
-//        homeViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-
-
-
-
-
-
+        myDialog=new Dialog(root.getContext());
         return root;
     }
+
+    public  static void ShowAddPopup(View v){
+        //Add btn has been assign an action thorough XML=addbtnPressed();
+        myDialog.setContentView(R.layout.addpopup);
+        ImageButton closeButton;
+
+
+
+//closeButton
+        closeButton=(ImageButton)myDialog.findViewById(R.id.close_imageButton);
+        closeButton.setOnClickListener(new View.OnClickListener()   {
+            public void onClick(View v)  {
+                myDialog.dismiss();
+            }
+        });
+
+//EditText
+
+        myDialog.show();
+
+    }
+
+//WHen Popup Addbtn is pressed then
+    public static void addbtnPressed(){
+
+        TextView Warning_TextView=(TextView)myDialog.findViewById(R.id.Warningtext_TextView);
+//get String from the EditText in the addpopup
+        EditText courseinput=(EditText)myDialog.findViewById(R.id.Course_Id_input);
+        String courseid=courseinput.getText().toString();
+
+
+        //check if courseid is a Course in all college courses
+        String warningstr="Course Not Found";
+
+        if(Main_allcourses.Allcoursesmap.containsKey(courseid)) {
+
+            String courseprereq = Main_allcourses.Allcoursesmap.get(courseid).getPrereq();
+            Course newcourse = Main_allcourses.Allcoursesmap.get(courseid);
+
+
+            if (CoursesTaken.contains(newcourse)) {
+                warningstr = "Course already Taken";
+
+            }else {
+
+                //String id, String name,String description, int credit,String prereq
+                Course temp = new Course(courseprereq, "name", "descriiption", 0, "per");
+
+                Log.d("COURSEPREREQ","!CoursesTaken.contains(temp)///////////////"+CoursesTaken.contains(temp));
+                Log.d("COURSEPREREQ","(CoursesTaken.contains(temp)==true)///////////////"+(CoursesTaken.contains(temp)==true));
+
+                if (courseprereq.equals("No Prerequisite") || (CoursesTaken.contains(temp)==true)     ) {
+
+                    //if (no prequests) AND (not in list) then add
+                    CoursesTaken.add(newcourse);
+                    Main_CoursesTaken.addCourse(newcourse);
+                    courseadapter.notifyDataSetChanged();
+                    for (int i = 0; i < CoursesTaken.size(); i++) {
+                        totalcredits = totalcredits + CoursesTaken.get(i).getCredit();
+                    }
+
+
+                    TextView totalcredits_tx = (TextView) root.findViewById(R.id.int_TotalCredits_Textview);
+
+                    totalcredits_tx.setText(String.valueOf(totalcredits));
+
+
+                    myDialog.dismiss();
+
+                } else {
+
+                    courseprereq = Main_allcourses.Allcoursesmap.get(courseid).getPrereq();
+                    warningstr = "Need " + courseprereq;
+
+                }
+            }
+
+
+            Warning_TextView.setText(warningstr);
+            Warning_TextView.setVisibility(View.VISIBLE);
+
+
+        }
+
+
+
+
+
+    }
+
+
+
+
+
 }

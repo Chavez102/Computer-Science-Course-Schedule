@@ -2,30 +2,78 @@
     <string name="app_name">Computer Science Schedule App</string>
 
     <string name="Course_string">Course</string>
+    <string name="CourseId_string">Course ID</string>
     <string name="Credit_string">Credit</string>
+
+
     <string name="Total_credits">Total Credits</string>
-    <string name="myString">hello</string>
-
-    <string name="your_string"><u>Underlined text</u></string>
-
-
+    <string name="myString">HELLLLLOO</string>
 
 <!--Home Screen Strings-->
     <string name="title_home">Home</string>
     <string name="Current_Semester"><u>Current Semester</u></string>
+    <string name="footer_homefragment">Total credits</string>
+
+
+    <!--    adapter-->
+        <string name="adapter_id_column">Course</string>
+        <string name="adapter_name_columm">Course</string>
+        <string name="adapter_credits_column">Course</string>
+
+    <!--    Popup-->
+    <string name="AddCourse">Add Course</string>
+    <string name="Add_btn_string">Add </string>
+    <string name="TexteditHint">CSE248</string>
+    <string name="WaringText">Course Not Found</string>
+
+    <!-- ListView footer-->
+    <string name="int_Total_Credits">0</string>
+
 
 
 
 <!--Whats Next Screen Strings-->
     <string name="WhatsnextlogoString">What\'s Next</string>
+    <string name="AvalableCourses"><u>Available Courses</u></string>
+
+
+
+
+
+
 
 <!--Degree Template Screen Strings-->
     <string name="DegreeTemplatelogo">Degree Template</string>
+    <string name="FirstSemesterstring"><u>First Semester</u></string>
+    <string name="SecondSemesterString"><u>Second Semester</u></string>
+    <string name="ThirddSemesterString"><u>Third Semester</u></string>
+    <string name="FourthdSemesterString"><u>Fourth Semester</u></string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--Degree Strings-->
 
     <string name="Degreelogo">Degree</string>
-
 
 
 

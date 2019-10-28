@@ -20,21 +20,14 @@
 
     />
 
-    <item
-        android:id="@+id/navigation_degree"
-        android:icon="@drawable/degreeicon"
-        android:title="@string/DegreeTemplatelogo"
-
-        />
-
-
-
-
 <!--    <item-->
-<!--        android:id="@+id/navigation_notifications"-->
-<!--        android:icon="@drawable/ic_notifications_black_24dp"-->
-<!--        android:title="@string/title_notifications"-->
+<!--        android:id="@+id/navigation_degree"-->
+<!--        android:icon="@drawable/degreeicon"-->
+<!--        android:title="@string/Degreelogo"-->
+
 <!--        />-->
+
+
 
 
 
