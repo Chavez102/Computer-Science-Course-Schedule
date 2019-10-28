@@ -99,10 +99,12 @@ public class HomeFragment extends Fragment {
 
         myDialog.show();
 
+
     }
 
 //WHen Popup Addbtn is pressed then
     public static void addbtnPressed(){
+        totalcredits=0;
 
         TextView Warning_TextView=(TextView)myDialog.findViewById(R.id.Warningtext_TextView);
 //get String from the EditText in the addpopup
@@ -126,9 +128,6 @@ public class HomeFragment extends Fragment {
 
                 //String id, String name,String description, int credit,String prereq
                 Course temp = new Course(courseprereq, "name", "descriiption", 0, "per");
-
-                Log.d("COURSEPREREQ","!CoursesTaken.contains(temp)///////////////"+CoursesTaken.contains(temp));
-                Log.d("COURSEPREREQ","(CoursesTaken.contains(temp)==true)///////////////"+(CoursesTaken.contains(temp)==true));
 
                 if (courseprereq.equals("No Prerequisite") || (CoursesTaken.contains(temp)==true)     ) {
 
